@@ -1,0 +1,45 @@
+.container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 1920px;
+    height: 1080px;
+
+    .card {
+        width: 200px;
+        height: max-content;
+        border: 1px solid black;
+    
+        .title {
+            text-align: center;
+            border-bottom: 1px solid #0096FF;
+            width: fit-content;
+        }
+    
+        .sprite {
+            border: 2px solid black;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            margin: 20px 50px;
+        }
+    
+        .info {
+    
+            .label {
+                color: #fff;
+                background-color: #0096FF;;
+                border-radius: 5px;
+                margin: 8px;
+                padding: 8px;
+            }
+        }
+    }
+    
+    .card:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+        box-shadow: 10px 5px 5px black;
+    }
+}
+

@@ -1,0 +1,23 @@
+<p>child-feature-dropdown works!</p>
+<div>
+    <label>{{text}}</label>
+    <select
+    id="dropdown"
+    [(ngModel)]="selectedOption">
+            <option
+            class="options"
+            *ngFor="let option of options; let i = index"
+            [ngValue]="option"
+            >
+                <span>{{option.name}}</span>
+            </option>
+    </select>
+    <div>
+        <label id="selected-option">{{selectedOption.name}}</label>
+            <div class="image-container" *ngIf="selectedOption.name">
+                <img class="image" [src]="selectedOption.icon">
+            </div>
+    </div>
+        
+</div>
+

@@ -1,0 +1,38 @@
+.color {
+    &.blue {
+        background-color: lightblue;
+    }
+    &.red {
+        background-color: lightcoral;
+    }
+}
+
+.button-container {
+
+    width: 240px;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+
+    .button {
+        width: 100px;
+        height: 80px;
+
+    }
+
+    .button:hover {
+        cursor: pointer;
+    }
+
+    #red-btn:hover {
+        color: #fff;
+        background-color: lightcoral;
+    }
+    
+    #blue-btn:hover {
+        color: #fff;
+        background-color: lightblue;
+    }
+
+}
+

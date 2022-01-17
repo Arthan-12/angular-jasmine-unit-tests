@@ -1,0 +1,20 @@
+.table {
+    border: solid 1px;
+    margin-left: 10px;
+
+    .head {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .body {
+       text-align: center;
+       display: flex;
+        flex-direction: column;
+    }
+
+    .rows {
+        display: flex;
+        justify-content: space-around;
+    }
+}

@@ -1,0 +1,13 @@
+<p>child-feature-dialog works!</p>
+<li>basic dialog HTML spec</li>
+<li>basic dialog open attribute</li>
+<li>mouse event spec</li>
+<li>function called inside dialog spec</li>
+<button (mouseenter)="openDialog()">hover me!</button>
+<div *ngIf="showDialog" class="dialog-container">
+
+</div>
+<dialog #dialog id="dialog">
+    <p>Hello!</p>
+    <button (click)="close()">Close</button>
+</dialog>

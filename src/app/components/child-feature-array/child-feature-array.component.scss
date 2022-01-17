@@ -1,0 +1,18 @@
+.array-container {
+    display: flex;
+    flex-direction: row;
+
+    .array-item {
+        margin: 4px;
+        padding: 4px;
+        border: solid orange 1px;
+
+        &:hover {
+            cursor: pointer;
+            background-color: rgb(224, 222, 222);
+            box-shadow: 10px 5px 5px black;
+        }
+    }
+
+}
+    

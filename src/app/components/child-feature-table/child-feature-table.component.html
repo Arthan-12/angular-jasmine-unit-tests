@@ -1,0 +1,16 @@
+<p>child-feature-table works!</p>
+<li>basic table spec</li>
+<table  class="table">
+    <thead class="head">
+        <tr class="columns">
+            <th *ngFor = "let column of columns">{{column}}</th>
+        </tr>
+    </thead>
+    <tbody class="body">
+        <tr class="rows" *ngFor = "let person of people">
+            <td>{{person.name}}</td>
+            <td>{{person.age}}</td>
+            <td>{{person.country}}</td>
+        </tr>
+    </tbody>
+</table>

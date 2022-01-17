@@ -1,0 +1,10 @@
+<p>child-feature works!</p>
+<li>ngClass spec</li>
+<li>basic button click and method call spec</li>
+<div class="color" [ngClass]="{blue: backgroundColor === 'blue', red: backgroundColor === 'red'}">
+    <h1>This text will receive a ngClass</h1>
+</div>
+<div class="button-container">
+    <button id="blue-btn" class="button" (click)="paintBgColor('blue')">Paint it blue</button>
+    <button id="red-btn" class="button" (click)="paintBgColor('red')">Paint it red</button>
+</div>

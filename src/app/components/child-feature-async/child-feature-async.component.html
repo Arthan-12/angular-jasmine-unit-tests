@@ -1,0 +1,16 @@
+<p>child-feature-async works!</p>
+<div class="container">
+    <div class="card" *ngFor="let pokemon of pokemonList">
+        <label class="title">
+            <h3>{{pokemon.name}} - {{pokemon.order}}</h3>
+        </label>
+        <img class="sprite" [src]="pokemon.sprites.front_default">
+        <div class="info">
+            <ul class="label">type: <label class="label">{{pokemon.types[0].type.name}}</label></ul>
+            <ul class="label">height: <label class="label">{{pokemon.height}}</label></ul>
+            <ul class="label">weight: <label class="label">{{pokemon.weight}}</label></ul>
+        </div>
+        
+    </div>
+</div>
+

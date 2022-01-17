@@ -1,0 +1,16 @@
+<p>child-feature-input works!</p>
+<li>basic form and input HTML spec</li>
+<li>form required validation spec</li>
+<li>form valid input spec</li>
+<div>
+    <form>
+        <label>Input test</label><br>
+        <input
+            placeholder="write something..."
+            [formControl]="input"
+            >
+        <span *ngIf="input.errors && input.touched">
+            <p class="error-message">campo obrigatório!</p>
+        </span>
+    </form>
+</div>
