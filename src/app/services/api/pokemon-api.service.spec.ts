@@ -1,18 +1,24 @@
-import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Pokemon } from './models/pokemon-response';
+import { PokemonApiMockService, MOCK_URL } from './pokemon-api-mock.service';
 
 import { PokemonApiService } from './pokemon-api.service';
 
 describe('PokemonApiService', () => {
   let service: PokemonApiService;
   let httpController: HttpTestingController;
-  let url = 'https://pokeapi.co/api/v2/pokemon';
+  
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule],
+      providers: [
+        {
+          provide: PokemonApiService,
+          useClass: PokemonApiMockService
+      },
+    ],
     });
     service = TestBed.inject(PokemonApiService);
     httpController = TestBed.inject(HttpTestingController);
@@ -32,14 +38,11 @@ describe('PokemonApiService', () => {
       name: 'mewtwo',
     }
 
-    service.findByName(pokemonName).subscribe(pokemonResponse => {
-      console.log(pokemonResponse);
-      expect(pokemonResponse.name).toEqual(pokemonName)
-    });
+    service.findByName(pokemonName).subscribe();
 
     const req = httpController.expectOne({
       method: 'GET',
-      url: `${url}/${pokemonName}`,
+      url: `${MOCK_URL}/${pokemonName}`,
     });
 
     req.flush(pokeMock);

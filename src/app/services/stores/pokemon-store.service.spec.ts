@@ -4,15 +4,18 @@ import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { PokemonStoreService } from './pokemon-store.service';
 import { Pokemon } from '../api/models/pokemon-response';
 import { PokemonApiService } from '../api/pokemon-api.service';
+import { PokemonStoreMockService, pokeMock, pokeMocks, pokeMocksListName } from './pokemon-store-mock.service';
 
 describe('PokemonStoreService', () => {
   let service: PokemonStoreService;
+  let serviceMock: PokemonStoreMockService
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule]
     });
     service = TestBed.inject(PokemonStoreService);
+    serviceMock = TestBed.inject(PokemonStoreMockService);
     
   });
 
@@ -20,21 +23,31 @@ describe('PokemonStoreService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should do the requestPokemonbyName() ', fakeAsync(() => {
-    const pokemonName = ['mewtwo'];
-    const pokeMock: Pokemon = {
-      name: 'Mewtwo',
-    }
+  it('should set and return pokemon data', () => {
 
-    service.setPokemonRequestList(pokemonName);
-    service.requestPokemonListByName();
+    service.setPokemon(pokeMock);
 
-    service.pokemonList$.subscribe(res => {
-      tick()
-      console.log(res);
-      
-    })
+    service.pokemon$.subscribe(data => {
+      expect(data).toEqual(pokeMock);
+    });
+  });
 
+  it('should set and return pokemon list data', () => {
 
-  }));
+    service.setPokemonList(pokeMocks);
+
+    service.pokemonList$.subscribe(data => {
+      expect(data).toEqual(pokeMocks);
+    });
+  });
+
+  it('should set and return pokemon request list names', () => {
+
+    service.setPokemonRequestList(pokeMocksListName);
+
+    service.pokemonRequestNames$.subscribe(data => {
+      expect(data).toEqual(pokeMocksListName);
+    });
+  });
+
 });

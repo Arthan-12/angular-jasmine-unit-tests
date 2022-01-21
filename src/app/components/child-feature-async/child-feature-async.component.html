@@ -2,7 +2,7 @@
 <div class="container">
     <div class="card" *ngFor="let pokemon of pokemonList">
         <label class="title">
-            <h3>{{pokemon.name}} - {{pokemon.order}}</h3>
+            <h3>{{pokemon.name}} - {{pokemon.id}}</h3>
         </label>
         <img class="sprite" [src]="pokemon.sprites.front_default">
         <div class="info">
@@ -10,7 +10,7 @@
             <ul class="label">height: <label class="label">{{pokemon.height}}</label></ul>
             <ul class="label">weight: <label class="label">{{pokemon.weight}}</label></ul>
         </div>
-        
     </div>
 </div>
+<button (click)="clearList()">clear Pokemon list</button>
 

@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
-import { async, ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { Pokemon } from 'src/app/services/api/models/pokemon-response';
+import { pokeMocks, pokeMocksListName, PokemonStoreMockService } from 'src/app/services/stores/pokemon-store-mock.service';
 import { PokemonStoreService } from 'src/app/services/stores/pokemon-store.service';
 
 import { ChildFeatureAsyncComponent } from './child-feature-async.component';
@@ -13,7 +14,7 @@ describe('ChildFeatureAsyncComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ChildFeatureAsyncComponent ],
-      imports: [HttpClientModule]
+      imports: [HttpClientModule],
     })
     .compileComponents();
     store = TestBed.inject(PokemonStoreService);
@@ -29,45 +30,38 @@ describe('ChildFeatureAsyncComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call Pokemon if the store has data', fakeAsync(() => {
+  it('should call Pokemon if the store has data', () => {
     const spiedMethod = spyOn(component, 'requestPokemon');
     const spiedMethod2 = spyOn(component, 'getPokemonList');
-    const pokeNameList = ['mewtwo'];
 
-    component.pokemonRequestList = pokeNameList;
+    component.pokemonRequestList = pokeMocksListName;
     fixture.detectChanges();
     component.ngOnInit();
 
     expect(spiedMethod).toHaveBeenCalled();
     expect(spiedMethod2).toHaveBeenCalled();
 
-  }));
-
-  it('should set the a Pokemon if the store has data', () => {
-    const pokeMockList: Pokemon[] = [{
-      name: 'mewtwo',
-      order: 230,
-      height: 20,
-    }]
-
-    store.setPokemonList(pokeMockList);
-
-    expect(component.pokemonList.length).toEqual(1);
-    expect(component.pokemonList).toEqual(pokeMockList)
   });
 
-  it('', waitForAsync(() => {
-    const pokeName = ['mewtwo'];
+  it('should set the a Pokemon if the store has data', () => {
 
-    component.pokemonRequestList = pokeName;
+    store.setPokemonList(pokeMocks);
+
+    expect(component.pokemonList.length).toEqual(2);
+    expect(component.pokemonList).toEqual(pokeMocks);
+  });
+
+  it('should clear Pokemon list when clearList is called', fakeAsync(() => {
+    store.setPokemonList(pokeMocks);
+    component.clearList();
     fixture.detectChanges();
-    
+
     fixture.whenStable().then(() => {
-      component.setPokemonRequestNames(pokeName);
-      component.requestPokemon();
-      component.getPokemonList();
-      fixture.detectChanges();
+      store.pokemonList$.subscribe(data => {
+        expect(data.length).toEqual(0);
+        expect(component.pokemonList).toEqual([]);
+      });
     });
-  }))
+  }));
 
 });

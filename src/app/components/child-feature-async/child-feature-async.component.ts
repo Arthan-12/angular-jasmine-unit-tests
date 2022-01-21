@@ -38,4 +38,8 @@ export class ChildFeatureAsyncComponent implements OnInit {
     this.pokemonStoreService.requestPokemonListByName();
   }
 
+  clearList() {
+    this.pokemonStoreService.setPokemonList([]);
+  }
+
 }
